@@ -2,6 +2,8 @@
 
 This project demonstrates how to integrate **Resend SDK** with **React Email** to build dynamic email templates. It also showcases a custom **VS Code preview feature** to make the email development experience smoother.
 
+![Resend Preview Feature](https://github.com/chuanxshi/resend-preview/blob/master/public/static/resend.gif?raw=true)
+
 ## Key Features
 
 ### 1. Resend SDK Integration
