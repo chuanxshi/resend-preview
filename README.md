@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resend with Preview 
 
-## Getting Started
+This project demonstrates how to integrate **Resend SDK** with **React Email** to build dynamic email templates. It also showcases a custom **VS Code preview feature** to make the email development experience smoother.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 1. Resend SDK Integration
+- **Resend SDK** allows for the simple and effective sending of emails using a React-based component.
+- The SDK is used to send emails by calling `resend.emails.send()` with a fully customized email template built using React.
+- Example usage of Resend SDK in the project:
+
+  ```typescript
+  const { data, error } = await resend.emails.send({
+    from: 'Your Name <your.email@example.com>',
+    to: ['recipient@example.com'],
+    subject: 'Hello world',
+    react: EmailTemplate({ username: 'alanturing' }),
+  });
+
+The SDK provides a clean interface to handle errors and responses, simplifying the process of sending emails programmatically.
+
+### 2. React Email for Email Templates
+
+This project uses **React Email**, a React-based library designed to create responsive and structured email templates.
+
+**Key benefits of React Email:**
+
+- You can reuse React components for modular email templates.
+- Conditional rendering and dynamic content (e.g., passing in username as a prop to customize emails).
+
+**Example Email Template:**
+
+  ```typescript
+  export const EmailTemplate = ({ username = 'alanturing' }) => (
+  <Container>
+      <Text>@{username}, a personal access token was created on your account.</Text>
+      <Button href="https://example.com">View your token</Button>
+  </Container>
+  );
 ```
+### 3. VS Code Preview Feature
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+One of the unique additions to this project is the VS Code live preview feature. It allows developers to see the rendered email template within the IDE without having to send an actual email.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+By using this feature, developers can:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Quickly preview changes in real-time while editing the email template.
+- Test different values (such as username) in the preview before sending the email.
 
-## Learn More
+**How it works:** The `isPreview` prop in the `EmailTemplate` component allows the same component to be rendered directly in the VS Code preview window. You can instantly update the username or other dynamic parts of the template and see the effect in real time.
 
-To learn more about Next.js, take a look at the following resources:
+## How to Run the Project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Installation
+To install the dependencies, run the following command:
+  ```typescript
+  pnpm install
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Setup Environment Variables
 
-## Deploy on Vercel
+You need to add your Resend API Key to a `.env.local` file in the root directory:
+  ```typescript
+  RESEND_API_KEY=your_resend_api_key
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Run the Project
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To start the project locally, run:
+
+  ```typescript
+  pnpm dev
+  ```
+
+  You can now view the email template in your browser and use the VS Code preview for real-time updates. 
+  
+  Feel free to modify any part as needed!
+
+
+
+
+
